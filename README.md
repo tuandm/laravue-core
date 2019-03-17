@@ -2,6 +2,10 @@
 The Laravel package to provide core functionalities of [Laravel dashboard](https://laravue.dev)
 
 ## Installations
+
+[Laravue](https://github.com/tuandm/laravue) is to provide an enterprise solution for an admin dashboard, therefore it's highly recommended to start a project with it. The following instructions are for intergrating core features of Laravue to existing Laravel project or to experiement with it.
+
+
 #### Install laravue-core package
 
 ```
@@ -9,12 +13,12 @@ composer require tuandm/laravue-core
 ```
 #### Setup environment for Laravue (API endpoint and JWT secret)
 
-1. Setup Laravue
+##### Setup Laravue
 ```
 php artisan laravue:setup
 ```
 
-2. Open `config/auth.php` and modify as below
+##### Open `config/auth.php` and modify as below
 
 ```
     # Change default auth guard to api
@@ -36,7 +40,7 @@ php artisan laravue:setup
             'model' => Tuandm\Laravue\User::class,
         ],
 ``` 
-Please refer to [auth.php sample](https://github.com/tuandm/laravue-core/tree/master/src/config/auth.php.sample)
+Please reference to [auth.php sample](https://github.com/tuandm/laravue-core/tree/master/src/config/auth.php.sample)
 
 #### Database
 Laravue core requires `users.role` field, consider to run migration and data seeder (for sample data if necessary
@@ -65,7 +69,10 @@ npm install # To make sure everything is set
 Please check [package.json sample](https://github.com/tuandm/laravue-core/tree/master/package.json.sample)
 
 #### Webpack.mix.js configuration
-We need to modify the webpack.mix.js to work with Laravue package, please refer to [webpack.mix.js sample](https://github.com/tuandm/laravue-core/tree/master/webpack.mix.js.sample)
+We need to modify the webpack.mix.js to work with Laravue package, please reference to [webpack.mix.js sample](https://github.com/tuandm/laravue-core/tree/master/webpack.mix.js.sample)
+
+#### Babel
+Laravue requires babel to build the packages. Usually, `.babelrc` will be generated with [laravue:setup command](#setup-laravue). Please manual add required plugins to `.babelrc` file if your project already uses it. Sample `.babelrc` can be found [here](https://github.com/tuandm/laravue-core/tree/master/.babelrc.sample)
 
 #### Start development
 
