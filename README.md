@@ -3,7 +3,7 @@ The Laravel package to provide core functionalities of [Laravel dashboard](https
 
 ## Installations
 
-[Laravue](https://github.com/tuandm/laravue) is to provide an enterprise solution for an admin dashboard, therefore it's highly recommended to start a project with it. The following instructions are for intergrating core features of Laravue to existing Laravel project or to experiement with it.
+[Laravue](https://github.com/tuandm/laravue) is to provide an enterprise solution for an admin dashboard, therefore it's highly recommended to use for starting a project. The following instructions are for intergrating core features of Laravue to existing Laravel project or to experiement with it.
 
 
 #### Install laravue-core package
