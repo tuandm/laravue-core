@@ -13,9 +13,11 @@ class AddSimpleRoleToUserTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('role')->default('editor');
-        });
+        if (!Schema::hasColumn('users', 'email')) {
+            Schema::table('users', function (Blueprint $table) {
+                $table->string('role')->default('editor');
+            });
+        }
     }
 
     /**
@@ -26,7 +28,7 @@ class AddSimpleRoleToUserTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            // $table->dropColumn('role');
+            $table->dropColumn('role');
         });
     }
 }
