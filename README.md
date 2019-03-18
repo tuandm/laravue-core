@@ -5,7 +5,7 @@ Demo: https://core.laravue.dev
 
 ## Installations
 
-[Laravue](https://github.com/tuandm/laravue) is to provide an enterprise solution for an admin dashboard, therefore it's highly recommended to use for starting a project. The following instructions are for intergrating core features of Laravue to existing Laravel project or to experiement with it.
+[Laravue](https://github.com/tuandm/laravue) provides necessary Element UI and rich features for an enterprise admin dashboard, therefore it's highly recommended to use for starting a project. The following instructions are for intergrating core features of Laravue to existing Laravel project or to experiement with it.
 
 
 #### Install laravue-core package
