@@ -53,7 +53,7 @@ This command will do these steps:
 Please reference to [auth.php sample](https://github.com/tuandm/laravue-core/tree/master/src/config/auth.php.sample)
 
 #### Database
-Laravue core requires `users.role` field, consider to run migration and data seeder (for sample data if necessary
+Laravue core requires `users.role` field, consider to run migration and data seeder (for sample data if necessary)
 
 ```
 php artisan migrate
