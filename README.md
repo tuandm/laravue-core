@@ -24,7 +24,7 @@ This command will do these steps:
 - Create .babelc file (if it doesn't exist)
 - Setup webpack.mix.js (please backup this file to make sure the current setting will not be lost)
 
-![Laravue setup](https://core.laravue.dev/images/render1552879783696.gif)
+![Laravue setup](https://core.laravue.dev/images/laravue.gif)
 
 ##### Open `config/auth.php` and modify as below
 
