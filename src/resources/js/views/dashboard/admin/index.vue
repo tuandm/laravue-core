@@ -30,7 +30,7 @@ export default {
     TransactionTable,
     TodoList,
     BoxCard,
-  }
+  },
 };
 </script>
 
