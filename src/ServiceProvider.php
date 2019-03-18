@@ -8,7 +8,8 @@
  */
 namespace Tuandm\Laravue;
 
-use Tuandm\Laravue\Console\LaravueCommand;
+use Tuandm\Laravue\Console\SetupCommand;
+use Tuandm\Laravue\Console\WebpackCommand;
 
 /**
  * Class LaravueServiceProvider
@@ -90,7 +91,8 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
     protected function registerCommands()
     {
         $this->commands([
-            LaravueCommand::class,
+            SetupCommand::class,
+            WebpackCommand::class,
         ]);
     }
 }

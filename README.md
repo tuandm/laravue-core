@@ -17,6 +17,12 @@ composer require tuandm/laravue-core
 ```
 php artisan laravue:setup
 ```
+This command will do these steps:
+- Setup JWT secret and API endpoint
+- Publish Laravue vendor packages/assets
+- Install NPM dependencies
+- Create .babelc file (if it doesn't exist)
+- Setup webpack.mix.js (please backup this file to make sure the current setting will not be lost)
 
 ##### Open `config/auth.php` and modify as below
 
@@ -50,14 +56,16 @@ php artisan migrate
 php artisan db:seed --class=Tuandm\\Laravue\\Database\\Seeds\\DatabaseSeeder
 ```
 
-#### Publish Laravue packages
+#### Manual settings
+It's recommended to use [laravue:setup command](#setup-laravue). If you want to manually install, you can do following commands:
 
+##### Publish vendor packages/assets
 ```
 php artisan vendor:publish --provider="Tuandm\Laravue\ServiceProvider" --tag="laravue-core"
 php artisan vendor:publish --provider="Tuandm\Laravue\ServiceProvider" --tag="laravue-asset"
 ```
 
-#### Add NPM dependencies
+##### Add NPM dependencies
 ```
 npm add babel-plugin-syntax-dynamic-import babel-plugin-syntax-jsx babel-plugin-transform-vue-jsx eslint eslint-loader eslint-plugin-vue laravel-mix-eslint vue-template-compiler svg-sprite-loader --save-dev
 
@@ -68,11 +76,12 @@ npm install # To make sure everything is set
 
 Please check [package.json sample](https://github.com/tuandm/laravue-core/tree/master/package.json.sample)
 
-#### Webpack.mix.js configuration
+##### Webpack.mix.js configuration
 We need to modify the webpack.mix.js to work with Laravue package, please reference to [webpack.mix.js sample](https://github.com/tuandm/laravue-core/tree/master/webpack.mix.js.sample)
 
-#### Babel
+##### Babel
 Laravue requires babel to build the packages. Usually, `.babelrc` will be generated with [laravue:setup command](#setup-laravue). Please manual add required plugins to `.babelrc` file if your project already uses it. Sample `.babelrc` can be found [here](https://github.com/tuandm/laravue-core/tree/master/.babelrc.sample)
+
 
 #### Start development
 

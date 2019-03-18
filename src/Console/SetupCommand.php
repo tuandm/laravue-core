@@ -1,6 +1,6 @@
 <?php
 /**
- * File LaravueCommand.php
+ * File SetupCommand.php
  *
  * @author Tuan Duong <bacduong@gmail.com>
  * @package Laravue
@@ -13,11 +13,11 @@ use Illuminate\Support\Str;
 use Illuminate\Console\Command;
 
 /**
- * Class LaravueCommand
+ * Class SetupCommand
  *
- * @package Tuandm\Laravue\Console
+ * @package Tuandm\Laravue\Console\Laravue
  */
-class LaravueCommand extends Command
+class SetupCommand extends Command
 {
     /**
      * The console command signature.
@@ -41,11 +41,12 @@ class LaravueCommand extends Command
     public function handle()
     {
         // Call jwt:secret command
+        $this->info('>>> Running: php artisan jwt:secret');
+        sleep(1);
         $this->call('jwt:secret');
 
         if (file_exists($path = $this->envPath()) === false) {
             $this->comment('Seems your .env does not exist, please setup.');
-
             return;
         }
 
@@ -56,11 +57,50 @@ class LaravueCommand extends Command
             $this->comment('Your BASE_API /api has been set successfully');
         } else {
             $this->comment('Your BASE_API already exists, please make sure Laravue will work with this endpoint.');
-
             return;
         }
 
         $this->setupBabel();
+        $this->setupPackages();
+        $this->setupDependencies();
+        $this->call('laravue:webpack');
+        $this->comment('Done! Please setup config/auth.php to use JWT for API guard!');
+    }
+
+    /**
+     * Publish Laravue packages
+     */
+    protected function setupPackages()
+    {
+        $this->comment('Publishing Laravue core');
+        $this->info('>>> Running: php artisan vendor:publish --provider="Tuandm\Laravue\ServiceProvider" --tag="laravue-core"');
+        sleep(1);
+        $this->call('vendor:publish', [
+            '--tag' => 'laravue-core',
+        ]);
+        $this->comment('Publishing Laravue assets');
+        $this->info('>>> Running: php artisan vendor:publish --provider="Tuandm\Laravue\ServiceProvider" --tag="laravue-asset"');
+        sleep(1);
+        $this->call('vendor:publish', [
+            '--tag' => 'laravue-asset',
+        ]);
+    }
+
+    /**
+     * Setup NPM dependencies
+     */
+    protected function setupDependencies()
+    {
+        $this->comment('NPM dependencies...');
+        $this->info('>>> Running: npm add babel-plugin-syntax-dynamic-import babel-plugin-syntax-jsx babel-plugin-transform-vue-jsx eslint eslint-loader eslint-plugin-vue laravel-mix-eslint vue-template-compiler svg-sprite-loader --save-dev');
+        sleep(1);
+        exec('npm add babel-plugin-syntax-dynamic-import babel-plugin-syntax-jsx babel-plugin-transform-vue-jsx eslint eslint-loader eslint-plugin-vue laravel-mix-eslint vue-template-compiler svg-sprite-loader --save-dev');
+        $this->info('>>> Running: npm add element-ui js-cookie normalize.css nprogress vuex vue-count-to vue-i18n vue-router');
+        sleep(1);
+        exec('npm add element-ui js-cookie normalize.css nprogress vuex vue-count-to vue-i18n vue-router');
+        if ($this->confirm('Run npm install ?')) {
+            exec('npm install');
+        }
     }
 
     /**
@@ -91,7 +131,7 @@ JSON;
             file_put_contents($babelrcPath, $content, FILE_APPEND);
             return;
         } else {
-            $this->comment('Your .babelrc already exists, please reference installation guide to manually setup babel');
+            $this->comment('Your .babelrc already exists, please refer to the installation guide to manually setup babel');
             return;
         }
     }
