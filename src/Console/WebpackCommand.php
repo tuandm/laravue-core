@@ -113,8 +113,9 @@ if (mix.inProduction()) {
          devtool: 'cheap-eval-source-map' // Fastest for development
       });
 }
+
 JSON;
-        file_put_contents($webpackPath, $content, FILE_APPEND);
+        file_put_contents($webpackPath, $content);
         $this->info('webpack.mix.js has been set successfully');
     }
 }

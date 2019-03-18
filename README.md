@@ -11,7 +11,7 @@ The Laravel package to provide core functionalities of [Laravel dashboard](https
 ```
 composer require tuandm/laravue-core
 ```
-#### Setup environment for Laravue (API endpoint and JWT secret)
+#### Setup environment for Laravue 
 
 ##### Setup Laravue
 ```
@@ -78,6 +78,12 @@ Please check [package.json sample](https://github.com/tuandm/laravue-core/tree/m
 
 ##### Webpack.mix.js configuration
 We need to modify the webpack.mix.js to work with Laravue package, please reference to [webpack.mix.js sample](https://github.com/tuandm/laravue-core/tree/master/webpack.mix.js.sample)
+
+Or simply run this command to generate recommendation version.
+
+```
+php artisan laravue:webpack
+```
 
 ##### Babel
 Laravue requires babel to build the packages. Usually, `.babelrc` will be generated with [laravue:setup command](#setup-laravue). Please manual add required plugins to `.babelrc` file if your project already uses it. Sample `.babelrc` can be found [here](https://github.com/tuandm/laravue-core/tree/master/.babelrc.sample)
