@@ -1,5 +1,6 @@
 ## Laravel Core
 The Laravel package to provide core functionalities of [Laravel dashboard](https://laravue.dev)
+
 Demo: https://core.laravue.dev
 
 ## Installations
