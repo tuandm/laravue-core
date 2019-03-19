@@ -33,14 +33,12 @@ Demo: https://core.laravue.dev
 [Laravue](https://github.com/tuandm/laravue) is built on top of [Laravel](https://laravel.com) and  so you have to check [Laravel's system requirement](https://laravel.com/docs/5.8/installation#server-requirements) and make sure your your [NodeJS](https://nodejs.org/en/) is ready before starting.
 
 ### Installing
-#### Install laravue-core package
-
+Install laravue-core package with `composer`
 ```
 composer require tuandm/laravue-core
 ```
-#### Setup environment for Laravue 
 
-##### Setup Laravue
+#### 1.a Setup Laravue with all-in-one command
 ```
 php artisan laravue:setup
 ```
@@ -53,40 +51,19 @@ This command will do these steps:
 
 ![Laravue setup](https://core.laravue.dev/images/laravue.gif)
 
-##### Open `config/auth.php` and modify as below
+#### 1.b Manual setup
+It's recommended to use [laravue:setup command](#setup-laravue). If you want to manually install, you can do following setps:
 
+##### .env file
+Generate JWT secret for authentication
 ```
-    # Change default auth guard to api
-    'defaults' => [
-        'guard' => 'api',
-    ],
-    ...
-    # Use JWT driver for api guard
-    'guards' => [
-    ....
-    'api' => [
-        'driver' => 'jwt',
-    ....
-    
-    # Use Laravue User model to authenticate
-    'providers' => [
-        'users' => [
-            'driver' => 'eloquent',
-            'model' => Tuandm\Laravue\User::class,
-        ],
-``` 
-Please refer to [auth.php sample](https://github.com/tuandm/laravue-core/tree/master/src/config/auth.php.sample)
-
-#### Database
-Laravue core requires `users.role` field, consider to run migration and data seeder (for sample data if necessary)
-
+php artisan jwt:secret
 ```
-php artisan migrate
-php artisan db:seed --class=Tuandm\\Laravue\\Database\\Seeds\\DatabaseSeeder
+Add these two lines to `.env` file
 ```
-
-#### Manual settings
-It's recommended to use [laravue:setup command](#setup-laravue). If you want to manually install, you can do following commands:
+  BASE_API=/api
+  MIX_BASE_API="${BASE_API}"
+```
 
 ##### Publish vendor packages/assets
 ```
@@ -116,6 +93,46 @@ php artisan laravue:webpack
 
 ##### Babel
 Laravue requires babel to build the packages. Usually, `.babelrc` will be generated with [laravue:setup command](#setup-laravue). Please manual add required plugins to `.babelrc` file if your project already uses it. Sample `.babelrc` can be found [here](https://github.com/tuandm/laravue-core/tree/master/.babelrc.sample)
+
+
+#### 2. Config API guard
+Open `config/auth.php` and modify as below
+
+```
+    # Change default auth guard to api
+    'defaults' => [
+        'guard' => 'api',
+    ],
+    ...
+    # Use JWT driver for api guard
+    'guards' => [
+    ....
+    'api' => [
+        'driver' => 'jwt',
+    ....
+    
+    # Use Laravue User model to authenticate
+    'providers' => [
+        'users' => [
+            'driver' => 'eloquent',
+            'model' => Tuandm\Laravue\User::class,
+        ],
+``` 
+Please refer to [auth.php sample](https://github.com/tuandm/laravue-core/tree/master/src/config/auth.php.sample)
+
+#### 3. Database
+Laravue core requires `users.role` field, consider to run migration if neccessary
+
+```
+php artisan migrate
+```
+
+#### 4. Sample data
+This database seeder will insert 3 test users, you can ignore this step if you have data already.
+
+```
+php artisan db:seed --class=Tuandm\\Laravue\\Database\\Seeds\\DatabaseSeeder
+```
 
 ### Start development
 
@@ -157,7 +174,9 @@ See also the list of [contributors](https://github.com/tuandm/laravue-core/contr
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE) file for details
 
-## Acknowledgments
+## Acknowledgements
 
-* [Laravue-core](https://core.laravue.dev) is the core components of [Laravue](https://github.com/tuandm/laravue) project which is highly recommended to start a fresh project.
-* [Laravue-core](https://core.laravue.dev) is a good practice to experiment before working with [Laravue](https://github.com/tuandm/laravue) project.
+* [Laravue](https://laravue.dev) - A beautiful dashboard for Laravel built by VueJS and ElementUI
+* [vue-element-admin](https://panjiachen.github.io/vue-element-admin/#/) A magical vue admin which insprited Laravue project
+* [tui.editor](https://github.com/nhnent/tui.editor) - Markdown WYSIWYG Editor
+* [Echarts](http://echarts.apache.org/) - A powerful, interactive charting and visualization library for browser
