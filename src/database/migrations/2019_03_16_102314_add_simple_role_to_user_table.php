@@ -13,7 +13,7 @@ class AddSimpleRoleToUserTable extends Migration
      */
     public function up()
     {
-        if (!Schema::hasColumn('users', 'email')) {
+        if (!Schema::hasColumn('users', 'role')) {
             Schema::table('users', function (Blueprint $table) {
                 $table->string('role')->default('editor');
             });
