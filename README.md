@@ -50,7 +50,7 @@ This command will do these steps:
             'model' => Tuandm\Laravue\User::class,
         ],
 ``` 
-Please reference to [auth.php sample](https://github.com/tuandm/laravue-core/tree/master/src/config/auth.php.sample)
+Please refer to [auth.php sample](https://github.com/tuandm/laravue-core/tree/master/src/config/auth.php.sample)
 
 #### Database
 Laravue core requires `users.role` field, consider to run migration and data seeder (for sample data if necessary)
@@ -81,7 +81,7 @@ npm install # To make sure everything is set
 Please check [package.json sample](https://github.com/tuandm/laravue-core/tree/master/package.json.sample)
 
 ##### Webpack.mix.js configuration
-We need to modify the webpack.mix.js to work with Laravue package, please reference to [webpack.mix.js sample](https://github.com/tuandm/laravue-core/tree/master/webpack.mix.js.sample)
+We need to modify the webpack.mix.js to work with Laravue package, please refer to [webpack.mix.js sample](https://github.com/tuandm/laravue-core/tree/master/webpack.mix.js.sample)
 
 Or simply run this command to generate recommendation version.
 
