@@ -148,7 +148,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## Authors
 
-* **Tuan Duong** - *Initial work* - [tuandmh](https://github.com/tuandm)
+* **Tuan Duong** - *Initial work* - [tuandm](https://github.com/tuandm)
 
 See also the list of [contributors](https://github.com/tuandm/laravue-core/contributors) who participated in this project.
 
