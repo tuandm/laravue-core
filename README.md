@@ -1,4 +1,4 @@
-# Laravel Core
+# Laravue Core
 
 The Laravel package to provide core functionalities for a beautiful [Laravel dashboard](https://laravue.dev)
 
