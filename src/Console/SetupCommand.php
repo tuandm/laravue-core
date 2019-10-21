@@ -60,6 +60,17 @@ class SetupCommand extends Command
             return;
         }
 
+        $path = $this->laravel->basePath('app/Providers/RouteServiceProvider.php');
+        if (Str::contains($contents = file_get_contents($path), "Route::prefix('api')") === false) {
+            $this->comment('Your RouteServiceProvider.php is missing its Route::prefix(\'api\'), please ensure that you\'re working with a base Laravel project setup.');
+            return;
+        } else {
+            // update default 'api' prefix
+            $contents = Str::replaceFirst('Route::prefix(\'api\')', 'Route::prefix(env(\'LARAVUE_PATH\') . \'api\')', $contents);
+            file_put_contents($path, $contents);
+            $this->comment('Your RouteServiceProvider.php has been updated successfully');
+        }
+        
         $this->setupBabel();
         $this->setupPackages();
         $this->setupDependencies();
