@@ -69,7 +69,7 @@ class SetupCommand extends Command
         } else {
             // update default 'api' prefix
             $contents = Str::replaceFirst('use Illuminate\Support\Facades\Route;', 'use Illuminate\Support\Facades\Route;' . PHP_EOL . 'use Illuminate\Support\Str;', $contents);
-            $contents = Str::replaceFirst('Route::prefix(\'api\')', 'Route::prefix((Str::finish(env(\'LARAVUE_PATH\'), \'/\') !== \'/\' ?: \'\') . 'api')', $contents);
+            $contents = Str::replaceFirst('Route::prefix(\'api\')', 'Route::prefix((Str::finish(env(\'LARAVUE_PATH\'), \'/\') !== \'/\' ?: \'\') . \'api\')', $contents);
             file_put_contents($path, $contents);
             $this->comment('Your RouteServiceProvider.php has been updated successfully');
         }
