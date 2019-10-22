@@ -53,7 +53,7 @@ class SetupCommand extends Command
         if (Str::contains(file_get_contents($path), 'BASE_API') === false) {
             // update existing entry
             file_put_contents($path, PHP_EOL . 'LARAVUE_PATH=', FILE_APPEND);
-            file_put_contents($path, PHP_EOL . 'MIX_LARAVUE_PATH="${LARAVUE_PATH}"' . PHP_EOL . PHP_EOL, FILE_APPEND);
+            file_put_contents($path, PHP_EOL . 'MIX_LARAVUE_PATH="${LARAVUE_PATH}"' . PHP_EOL, FILE_APPEND);
             file_put_contents($path, PHP_EOL . 'BASE_API=/api', FILE_APPEND);
             file_put_contents($path, PHP_EOL . 'MIX_BASE_API="${LARAVUE_PATH}${BASE_API}"', FILE_APPEND);
             $this->comment('Your BASE_API /api has been set successfully');
