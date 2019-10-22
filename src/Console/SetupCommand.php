@@ -52,8 +52,10 @@ class SetupCommand extends Command
 
         if (Str::contains(file_get_contents($path), 'BASE_API') === false) {
             // update existing entry
+            file_put_contents($path, PHP_EOL . 'LARAVUE_PATH=', FILE_APPEND);
+            file_put_contents($path, PHP_EOL . 'MIX_LARAVUE_PATH="${LARAVUE_PATH}"' . PHP_EOL . PHP_EOL, FILE_APPEND);
             file_put_contents($path, PHP_EOL . 'BASE_API=/api', FILE_APPEND);
-            file_put_contents($path, PHP_EOL . 'MIX_BASE_API="${BASE_API}"', FILE_APPEND);
+            file_put_contents($path, PHP_EOL . 'MIX_BASE_API="${LARAVUE_PATH}${BASE_API}"', FILE_APPEND);
             $this->comment('Your BASE_API /api has been set successfully');
         } else {
             $this->comment('Your BASE_API already exists, please make sure Laravue will work with this endpoint.');
@@ -66,7 +68,8 @@ class SetupCommand extends Command
             return;
         } else {
             // update default 'api' prefix
-            $contents = Str::replaceFirst('Route::prefix(\'api\')', 'Route::prefix(env(\'LARAVUE_PATH\') . \'api\')', $contents);
+            $contents = Str::replaceFirst('use Illuminate\Support\Facades\Route;', 'use Illuminate\Support\Facades\Route;' . PHP_EOL . 'use Illuminate\Support\Str;', $contents);
+            $contents = Str::replaceFirst('Route::prefix(\'api\')', 'Route::prefix((Str::finish(env(\'LARAVUE_PATH\'), \'/\') !== \'/\' ?: \'\') . 'api')', $contents);
             file_put_contents($path, $contents);
             $this->comment('Your RouteServiceProvider.php has been updated successfully');
         }
