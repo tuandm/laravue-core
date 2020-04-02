@@ -100,7 +100,6 @@ mix.webpackConfig({
 mix.js('resources/vendor/laravue/app.js', 'public/js')
    // .extract(['vue', 'axios', 'vuex', 'vue-router', 'vue-i18n', 'element-ui'])
    .options({
-      processCssUrls: false
    })
    .sass('resources/vendor/laravue/styles/index.scss', 'public/css');
 

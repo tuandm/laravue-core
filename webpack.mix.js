@@ -48,7 +48,6 @@ mix.js('src/resources/js/app.js', 'src/public/js')
 // Seems this issue is from webpack, we have to wait webpack 5: https://github.com/JeffreyWay/laravel-mix/issues/1870
 // .extract(['vue', 'axios', 'vuex', 'vue-router', 'vue-i18n', 'element-ui'])
   .options({
-    processCssUrls: false
   })
   .sass('src/resources/js/styles/index.scss', 'src/public/css');
 
