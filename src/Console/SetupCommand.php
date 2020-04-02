@@ -95,9 +95,9 @@ class SetupCommand extends Command
         $this->info('>>> Running: npm add babel-plugin-syntax-dynamic-import babel-plugin-syntax-jsx babel-plugin-transform-vue-jsx eslint eslint-loader eslint-plugin-vue laravel-mix-eslint vue-template-compiler svg-sprite-loader --save-dev');
         sleep(1);
         exec('npm add babel-plugin-syntax-dynamic-import babel-plugin-syntax-jsx babel-plugin-transform-vue-jsx eslint eslint-loader eslint-plugin-vue laravel-mix-eslint vue-template-compiler svg-sprite-loader --save-dev');
-        $this->info('>>> Running: npm add element-ui js-cookie normalize.css nprogress vuex vue-count-to vue-i18n vue-router');
+        $this->info('>>> Running: npm add vue element-ui js-cookie normalize.css nprogress vuex vue-count-to vue-i18n vue-router');
         sleep(1);
-        exec('npm add element-ui js-cookie normalize.css nprogress vuex vue-count-to vue-i18n vue-router');
+        exec('npm add vue element-ui js-cookie normalize.css nprogress vuex vue-count-to vue-i18n vue-router');
         if ($this->confirm('Run npm install ?')) {
             exec('npm install');
         }
